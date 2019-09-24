@@ -1,0 +1,9 @@
+---
+# role: di_netboot
+# file: tasks/unset.yml
+#
+# Tasks to unset di_netboot.
+# Each task should be clearly named, with no inventory variable in the name.
+
+- name: fail unconditionally
+  fail:

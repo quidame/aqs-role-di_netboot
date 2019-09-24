@@ -1,0 +1,8 @@
+---
+- hosts: tests
+  roles:
+    - role: di_netboot
+      di_netboot__action: setup
+
+    - role: di_netboot
+      di_netboot__action: unset

@@ -1,0 +1,25 @@
+---
+# role: di_netboot
+# file: defaults/main.yml
+#
+# This file should declare all or almost all variables of the role, describe
+# them, provide examples and a safe default value for each.  A variable that
+# is defined here may be overridden anywhere else, this place having the lowest
+# precedence/priority/weight.
+#
+# All variables of this role should have a name of the form:
+# di_netboot__foo
+# with two underscores between the role name (that is a prefix) and `foo`, i.e.
+# what this variable is supposed to be for, as in:
+# di_netboot__login: admin
+# di_netboot__base_url: https://di_netboot.qssdk.lab
+
+################################################################################
+## di_netboot__action
+#
+# Define the main behaviour of the role. Valid values are 'setup' (the default)
+# and 'unset'.  Depending of the role scope, this may be understood as install/
+# uninstall, configure/unconfigure, start/stop, present/absent, create/remove,
+# and so on.
+#
+#di_netboot__action: setup

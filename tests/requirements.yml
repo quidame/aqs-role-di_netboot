@@ -1,0 +1,7 @@
+# role: di_netboot
+# file: tests/requirements.yml
+---
+- name: "di_netboot"
+  src: "https://github.com/quidame/aqs-role-di_netboot.git"
+  scm: "git"
+  version: "devel"
