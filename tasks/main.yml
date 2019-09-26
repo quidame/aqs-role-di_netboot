@@ -3,5 +3,3 @@
 # file: tasks/main.yml
 
 - include_tasks: "{{ di_netboot__action | default('setup') }}.yml"
-  tags:
-    - "aqs::di_netboot"
