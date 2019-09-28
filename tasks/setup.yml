@@ -24,7 +24,7 @@
 
 - name: download and unpack debian-installer netboot
   unarchive:
-    path:       "{{ di_netboot__path }}"
+    dest:       "{{ di_netboot__path }}"
     src:        "{{ di_netboot__arc_src }}"
     remote_src: "{{ di_netboot__arc_remote_src }}"
     attr:       "{{ di_netboot__arc_attr       | default(omit) }}"
@@ -40,7 +40,6 @@
     setype:     "{{ di_netboot__arc_setype     | default(omit) }}"
     seuser:     "{{ di_netboot__arc_seuser     | default(omit) }}"
     validate_certs: "{{ di_netboot__arc_validate_certs | default(omit) }}"
-    remote_src: yes
 
 
 - name: install custom boot files from templates
