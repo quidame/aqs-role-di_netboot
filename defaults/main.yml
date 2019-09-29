@@ -14,6 +14,7 @@
 # di_netboot__login: admin
 # di_netboot__base_url: https://di_netboot.qssdk.lab
 
+
 ################################################################################
 ## di_netboot__action
 #
@@ -22,14 +23,14 @@
 # uninstall, configure/unconfigure, start/stop, present/absent, create/remove,
 # and so on.
 #
-#di_netboot__action: setup
+di_netboot__action: setup
 
 
 ################################################################################
 ## di_netboot__*
 #
 # di_netboot__path: the root of the TFTP service, where debian-installer will be
-#                  unpacked.
+#                   unpacked.
 # di_netboot__arch: architecture of the debian-installer
 # di_netboot__host: the host where to download debian-installer from
 # di_netboot__vers: the debian release of the installer (stable, testing)
@@ -37,10 +38,7 @@
 di_netboot__path: "/srv/tftp"
 di_netboot__arch: "amd64"
 di_netboot__host: "ftp.debian.org"
-di_netboot__version: "stable"
-
-di_netboot__arc_remote_src: yes
-di_netboot__arc_src: "http://{{ di_netboot__host }}/debian/dists/{{ di_netboot__version }}/main/installer-{{ di_netboot__arch }}/current/images/netboot/netboot.tar.gz"
+di_netboot__vers: "stable"
 
 
 ################################################################################
@@ -67,6 +65,8 @@ di_netboot__arc_src: "http://{{ di_netboot__host }}/debian/dists/{{ di_netboot__
 # Properties of the unpacked files. These variables match parameters of module
 # unarchive.
 #
+di_netboot__arc_remote_src: yes
+di_netboot__arc_src: "http://{{ di_netboot__host }}/debian/dists/{{ di_netboot__vers }}/main/installer-{{ di_netboot__arch }}/current/images/netboot/netboot.tar.gz"
 #di_netboot__arc_attr:       omit
 #di_netboot__arc_creates:    omit
 #di_netboot__arc_exclude:    omit

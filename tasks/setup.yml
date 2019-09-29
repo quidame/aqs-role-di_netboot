@@ -6,7 +6,7 @@
 # Each task should be clearly named, with no inventory variable in the name.
 
 
-- name: create tftp root directory
+- name: "create tftp root directory"
   file:
     path:    "{{ di_netboot__path }}"
     attr:    "{{ di_netboot__dir_attr    | default(omit) }}"
@@ -22,7 +22,7 @@
     state: directory
 
 
-- name: download and unpack debian-installer netboot
+- name: "download and unpack debian-installer netboot"
   unarchive:
     dest:       "{{ di_netboot__path }}"
     src:        "{{ di_netboot__arc_src }}"
@@ -42,7 +42,7 @@
     validate_certs: "{{ di_netboot__arc_validate_certs | default(omit) }}"
 
 
-- name: install custom boot files from templates
+- name: "install custom boot files from templates"
   template:
     src:     "{{ menu }}"
     dest:    "{{ di_netboot__path }}/{{ menu }}"

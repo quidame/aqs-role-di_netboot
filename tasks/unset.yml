@@ -5,7 +5,7 @@
 # Tasks to unset di_netboot.
 # Each task should be clearly named, with no inventory variable in the name.
 
-- name: remove tftp root directory
+- name: "remove tftp root directory"
   file:
     path: "{{ di_netboot__path }}"
     state: absent
