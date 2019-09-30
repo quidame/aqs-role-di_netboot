@@ -30,7 +30,7 @@ di_netboot__arch: amd64
 
 The debian-installer's version (`stable`, `testing`).
 ```yaml
-di_netboot__version: stable
+di_netboot__vers: stable
 ```
 
 The host to download the package from.
@@ -63,14 +63,14 @@ ansible-galaxy install -r requirements.yml
 
 Download and unpack debian-installer netboot:
 ```yaml
-- hosts: pxe
+- hosts: deploy
   roles:
     - role: di_netboot
 ```
 
 Remove debian-installer netboot tree:
 ```yaml
-- hosts: pxe
+- hosts: deploy
   roles:
     - role: di_netboot
       di_netboot__action: unset

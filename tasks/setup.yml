@@ -44,7 +44,7 @@
 
 - name: "install custom boot files from templates"
   template:
-    src:     "{{ menu }}"
+    src:     "{{ menu }}.j2"
     dest:    "{{ di_netboot__path }}/{{ menu }}"
     attr:    "{{ di_netboot__menu_attr    | default(omit) }}"
     follow:  "{{ di_netboot__menu_follow  | default(omit) }}"

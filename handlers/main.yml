@@ -7,10 +7,10 @@
 # anytime with:
 # - meta: flush_handlers.
 #
-#- name: restart di_netboot service
+#- name: restart DHCP/TFTP service
 #  systemd:
-#    name: di_netboot
+#    name: dnsmasq.servive
 #    daemon_reload: yes
 #    enabled: yes
 #    state: restarted
-#  listen: di_netboot__restart
+#  listen: dnsmasq_restart
