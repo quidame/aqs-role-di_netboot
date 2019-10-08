@@ -2,7 +2,8 @@
 # role: di_netboot
 # file: tasks/setup.yml
 #
-# Tasks to setup di_netboot.
+# Tasks to setup di_netboot, i.e. download and unarchive a debian-installer
+# suitable for pxe bootable clients, and optionally replace some pxe menus.
 # Each task should be clearly named, with no inventory variable in the name.
 
 
