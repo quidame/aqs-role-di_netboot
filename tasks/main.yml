@@ -2,6 +2,4 @@
 # role: di_netboot
 # file: tasks/main.yml
 
-- include_tasks: "{{ di_netboot__action | default('setup') }}.yml"
-  tags:
-    - "aqs::di_netboot"
+- import_tasks: "{{ di_netboot__action }}.yml"

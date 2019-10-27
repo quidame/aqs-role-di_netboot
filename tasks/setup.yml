@@ -2,8 +2,61 @@
 # role: di_netboot
 # file: tasks/setup.yml
 #
-# Tasks to setup di_netboot.
+# Tasks to setup di_netboot, i.e. download and unarchive a debian-installer
+# suitable for pxe bootable clients, and optionally replace some pxe menus.
 # Each task should be clearly named, with no inventory variable in the name.
 
-- name: fail unconditionally
-  fail:
+
+- name: "create tftp root directory"
+  file:
+    path:    "{{ di_netboot__path }}"
+    attr:    "{{ di_netboot__dir_attr    | default(omit) }}"
+    follow:  "{{ di_netboot__dir_follow  | default(omit) }}"
+    force:   "{{ di_netboot__dir_force   | default(omit) }}"
+    group:   "{{ di_netboot__dir_group   | default(omit) }}"
+    owner:   "{{ di_netboot__dir_owner   | default(omit) }}"
+    mode:    "{{ di_netboot__dir_mode    | default(omit) }}"
+    selevel: "{{ di_netboot__dir_selevel | default(omit) }}"
+    serole:  "{{ di_netboot__dir_serole  | default(omit) }}"
+    setype:  "{{ di_netboot__dir_setype  | default(omit) }}"
+    seuser:  "{{ di_netboot__dir_seuser  | default(omit) }}"
+    state: directory
+
+
+- name: "download and unpack debian-installer netboot"
+  unarchive:
+    dest:       "{{ di_netboot__path }}"
+    src:        "{{ di_netboot__arc_src }}"
+    remote_src: "{{ di_netboot__arc_remote_src }}"
+    attr:       "{{ di_netboot__arc_attr       | default(omit) }}"
+    creates:    "{{ di_netboot__arc_creates    | default(omit) }}"
+    exclude:    "{{ di_netboot__arc_exclude    | default(omit) }}"
+    extra_opts: "{{ di_netboot__arc_extra_opts | default(omit) }}"
+    keep_newer: "{{ di_netboot__arc_keep_newer | default(omit) }}"
+    group:      "{{ di_netboot__arc_group      | default(omit) }}"
+    owner:      "{{ di_netboot__arc_owner      | default(omit) }}"
+    mode:       "{{ di_netboot__arc_mode       | default(omit) }}"
+    selevel:    "{{ di_netboot__arc_selevel    | default(omit) }}"
+    serole:     "{{ di_netboot__arc_serole     | default(omit) }}"
+    setype:     "{{ di_netboot__arc_setype     | default(omit) }}"
+    seuser:     "{{ di_netboot__arc_seuser     | default(omit) }}"
+    validate_certs: "{{ di_netboot__arc_validate_certs | default(omit) }}"
+
+
+- name: "install custom boot files from templates"
+  template:
+    src:     "{{ _di_menu_item }}.j2"
+    dest:    "{{ di_netboot__path }}/{{ _di_menu_item }}"
+    attr:    "{{ di_netboot__menu_attr    | default(omit) }}"
+    follow:  "{{ di_netboot__menu_follow  | default(omit) }}"
+    force:   "{{ di_netboot__menu_force   | default(omit) }}"
+    group:   "{{ di_netboot__menu_group   | default(omit) }}"
+    owner:   "{{ di_netboot__menu_owner   | default(omit) }}"
+    mode:    "{{ di_netboot__menu_mode    | default(omit) }}"
+    selevel: "{{ di_netboot__menu_selevel | default(omit) }}"
+    serole:  "{{ di_netboot__menu_serole  | default(omit) }}"
+    setype:  "{{ di_netboot__menu_setype  | default(omit) }}"
+    seuser:  "{{ di_netboot__menu_seuser  | default(omit) }}"
+  loop: "{{ di_netboot__arc_exclude | default([]) }}"
+  loop_control:
+    loop_var: _di_menu_item
