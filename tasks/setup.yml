@@ -45,8 +45,8 @@
 
 - name: "install custom boot files from templates"
   template:
-    src:     "{{ menu }}.j2"
-    dest:    "{{ di_netboot__path }}/{{ menu }}"
+    src:     "{{ _di_menu_item }}.j2"
+    dest:    "{{ di_netboot__path }}/{{ _di_menu_item }}"
     attr:    "{{ di_netboot__menu_attr    | default(omit) }}"
     follow:  "{{ di_netboot__menu_follow  | default(omit) }}"
     force:   "{{ di_netboot__menu_force   | default(omit) }}"
@@ -59,4 +59,4 @@
     seuser:  "{{ di_netboot__menu_seuser  | default(omit) }}"
   loop: "{{ di_netboot__arc_exclude | default([]) }}"
   loop_control:
-    loop_var: menu
+    loop_var: _di_menu_item

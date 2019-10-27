@@ -66,6 +66,7 @@ Download and unpack debian-installer netboot:
 - hosts: deploy
   roles:
     - role: di_netboot
+      di_netboot__action: setup
 ```
 
 Remove debian-installer netboot tree:
